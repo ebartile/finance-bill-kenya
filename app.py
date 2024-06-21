@@ -1,14 +1,13 @@
 import streamlit as st
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 import requests
 import io
 
 # Function to extract text from PDF
 def extract_text_from_pdf(pdf_file):
-    pdf_reader = PdfFileReader(pdf_file)
+    pdf_reader = PdfReader(pdf_file)
     text = ""
-    for page_num in range(pdf_reader.numPages):
-        page = pdf_reader.getPage(page_num)
+    for page in pdf_reader.pages:
         text += page.extract_text()
     return text
 
